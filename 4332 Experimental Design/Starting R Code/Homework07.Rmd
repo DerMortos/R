@@ -1,0 +1,66 @@
+---
+title: "Homework Week 7"
+author:
+- UTRGV School of Mathematical and Statistical Sciences
+- STAT 4332 Experimental Design
+- Norb Lara
+output:  html_notebook
+---
+
+---
+
+>**Objective:** One-Way ANOVA
+
+---
+
+
+### Problems:
+For a one-way ANOVA problem, where we consider one factor with $a$ levels and
+$n$ replicates ($N=na$). Assume the standard effect model $y_{ij}=\mu + \tau_i + \epsilon_{ij},$ where $\epsilon_{ij} \sim N(0, \sigma^2).$
+
+* Show that
+$$\sum_{i=1}^a \sum_{j=1}^n (y_{ij} - \bar{y}_{..})^2 = n\sum_{i=1}^a (\bar{y}_{i.}- \bar{y}_{..})^2 + \sum_{i=1}^a \sum_{j=1}^n (y_{ij} - \bar{y}_{i.})^2$$. \
+![Problem 1](Hw7-1.png)
+
+* Show that 
+$$SS_T = \sum_{i=1}^a \sum_{j=1}^n (y_{ij} - \bar{y}_{..})^2 = \sum_{i=1}^a \sum_{j=1}^ny_{ij}^2 - \frac{y_{..}^2}{N}$$ \
+![Problem 2](Hw7-2.png)
+
+* Show that 
+$$SS_{Treatments} = n\sum_{i=1}^a (\bar{y}_{i.}- \bar{y}_{..})^2 = \frac{1}{n}\sum_{i=1}^a y_{i.}^2 - \frac{y_{..}^2}{N}$$
+
+* Show that
+$$E(MS_E) = \sigma^2$$ \
+![Problem 4](Hw7-4.png)
+
+* Show that
+$$E(MS_{Treatments}) = \sigma^2 + \frac{n}{a-1} \sum_{i=1}^a \tau_i^2$$ \
+![Problem 5](Hw7-5.png)
+
+* To compare the teaching effectiveness of 3 teaching methods, the semester average based on 4 mid-term exams from five randomly selected students enrolled in each teaching method were used.
+    * **What is the response in this study?** \
+    4 midterms \
+    * **How many replicates are there?** \
+    5 \
+    * **Write the appropriate null and alternative hypotheses.** \
+    $H_0$: all averages are equal \
+    $H_a$: at least one average is not equal \
+    * **Complete the partially filled ANOVA table given below. Round your answers to 4 decimal places** \
+        pf(14.6853,2,12, lower.tail = FALSE)
+    
+        Source          | df  | SS  | MS     | F   | P-value |
+        ---             | --- | --- | ---    | --- | ---     |
+        Teaching Method |  2  | 245 |122.5000|14.6852|  0.0006    |
+        Error           | 12  |100.1| 8.3417 | -   | -       |
+        Total           | 14  |345.1|  -     | -   | -       |
+                        |     |     |        |     |         |
+    * **Find the critical value at $\alpha=0.01$** \
+    From appendix IV $F_{2,12,0.01}$ = 6.93 \
+    * **Make your conclusion** \
+    With a small P-value we reject the null. Therefor at least one teaching method differs in effectiveness.
+    
+
+
+
+
+

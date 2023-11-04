@@ -1,0 +1,161 @@
+---
+title: "Homework Week 4"
+author:
+- UTRGV School of Mathematical and Statistical Sciences
+- STAT 4332 Experimental Design
+- Norb Lara
+output:  html_notebook
+---
+
+---
+
+>**Objective:** Practical Inferential Statistics
+
+---
+
+
+### Problems:
+
+For problems 1 to 3 use R software. Provide your conclusions and explain your procedure in each case.
+
+**1.** Consider the following sample data:  
+9.37, 13.04, 11.69, 8.21, 11.18, 10.41, 13.15, 11.51, 13.21, and 7.75.  
+Is it reasonable to assume that this
+data is from a normal distribution?  Is there evidence to support a claim
+that the mean of the population is 10?
+```{r}
+data <- c(9.37, 13.04, 11.69, 8.21, 11.18, 10.41, 13.15, 11.51, 13.21, 7.75)
+qqnorm(data)
+shapiro.test(data)
+t.test(data,mu=10)
+```
+**We can use qqplot to check the distribution. We can also verify normality using Shapiro-wilks test by testing \
+$H_0$: data follows a normal distribution. \
+Since the test returns a p-value > 0.05 so we do not reject the null. \
+\
+Similarly, testing for \
+$\mu$ = 10 \
+With a p-value > 0.05, we do not reject the null. ** \
+---
+---
+\
+\
+**2.** The time to repair an electronic instrument is a normally distributed random variable measured in hours.  The repair time for 16 such instruments chosen at random are as follows: 159,	280,	101,	212, 224,	379,	179,	264, 222,	362,	168,	250, 149,	260,	485,	170.\
+    + You wish to know if the mean repair time exceeds 225 hours.  Set up appropriate hypotheses for investigating this issue\
+    + Test the hypotheses you formulated previous part. What are your conclusions?  Use $\alpha=0.05.$\
+    + Provide a P-value and a confidence interval in your output.\
+    
+**In order to test the hypothesis that repair time exceeds 225 hours we negate the hypothesis as such:**\
+**$H_0$: The mean time to repair an electronic instrument is less than or equal to 225 hours** \
+**$H_1$: The mean time to repair an electronic instrument is greater than 225 hours** \
+**Using a one sided t-test we obtain a test statistic of 0.66852. In table A4 the critical value $t_{\alpha, n-1} = t_{0.05, 15}$ = 1.753.**\
+**Since 0.66852 < 1.753 we do not reject the null.** \
+**Alternatively we could use the p-value 0.257 > 0.025 to reject the null**
+```{r}
+data2 <- c(159,	280, 101, 212, 224,	379, 179, 264, 222,	362, 168, 250, 149,	260, 485, 170)
+t.test(data2, alternative = "greater", mu=225)
+t.test(data2, mu=225)
+```
+\
+**To compute the confidence interval we run the t-test as a two tailed and find the 95% CI to be (188.89, 294.11)**\
+---
+---
+\
+\
+**3.** Front housings for cell phones are manufactured in an injection molding process.  The time the part is allowed to cool in the mold before removal is thought to influence the occurrence of a particularly troublesome cosmetic defect, flow lines, in the finished housing.  After manufacturing, the housings are inspected visually and assigned a score between 1 and 10 based on their appearance, with 10 corresponding to a perfect part and 1 corresponding to a completely defective part.  An experiment was conducted using two cool-down times, 10 seconds and 20 seconds, and 20 housings were evaluated at each level of cool-down time.  All 40 observations in this experiment were run in random order. The data are shown below. \
+    + Is there evidence to support the claim that the longer cool-down time results in fewer appearance defects?  \
+    Use $\alpha= 0.05.$ Hint: This is not a two tail test. \
+    **$H_0$: Defects are the same with longer cool-down time** \
+    **$H_1$: defects are less with longer cool-down time** \
+    **Since our test statistic is > critical value --- 5.59 > 1.68 we reject the null.** \
+   + Provide a P-value and a confidence interval with your interpretation\
+   **p-value $\approx$ 2.154e-05 $\approx$ 0.00 and the confidence interval is (1.97, 4.33) ** 
+   
+   
+```{r}
+d10 <- c(1, 3, 2, 6, 1,	5, 3,	3, 5,	2, 1,	1, 5,	6, 2,	8, 3,	2, 5,	3)
+d20 <- c(7,	6, 8,	9, 5,	5, 9,	7, 5,	4, 8,	6, 6,	8, 4,	5, 6,	8, 7,	7)
+
+df <- data.frame(seconds10 = d10, seconds20=d20)
+t.test(d20, d10, paired = TRUE)
+```
+---
+---
+\
+
+For problems 4 and 5 use Minitab.\
+
+**4.** The deflection temperature under load for two different formulations of ABS plastic pipe is being studied.  Two samples of 12 observations each are prepared using each formulation, and the deflection temperatures (in F) are reported below.
+    + Construct normal probability plots for both samples.  Do these plots support assumptions of normality and equal variance for both samples? \
+    ![Boxplot](Hw4-4a.png)
+    ![Probability Plot](Hw4-4b.png)
+    ![Boxplot](Hw4-4c.png)
+
+    
+
+    + Do the data support the claim that the mean deflection temperature under load for formulation 1 exceeds that of formulation 2?  \
+    Use $\alpha= 0.05.$ \
+**The data does not support the claim that the mean deflection temperature for formulation 1 exceeds that of formulation 2 based on our p-value. Therefore, we cannot reject the null.** \
+        + Provide a P-value.\
+        **P-value = 0.367**
+```{r, echo=FALSE}
+
+f1 <- c(206,	193,	192, 188,	207,	210, 205,	185,	194, 187,	189,	178)
+f2 <- c(177,	176,	198, 197,	185,	188, 206,	200,	189, 201,	197,	203)
+
+df <- data.frame(formulation1 = f1, formulation2=f2)
+df
+```
+```{r}
+qqnorm(f1+f2)
+```
+---
+---
+\
+For problem 5 use both Minitab and R (in R use the package "pwr").\
+
+**5.** The following are the burning times (in minutes) of chemical flares of two different formulations. (Use the pool standard deviation as an estimate of $\sigma$ and a significance level of 0.05.) \
+![Pooled standard Deviation](Hw4-5a.png) \
+    + If the mean burning times of the two flames differ by as much as 2 minutes, find the power of the test? \
+    **Power = 0.102**\
+    \
+    ![Power](Hw4-5b.png) \
+    + What sample size would be required to detect an actual difference in mean burning time of 1 minute with a power of at least 0.90? \
+    **A sample size of 1825.**\
+    ![Sample Size](Hw4-5c.png)\
+    
+```{r, echo=FALSE}
+t1 <- c(65, 82, 81,	67, 57,	59, 66,	75, 82,	70)
+t2 <- c(64,	56, 71,	69, 83,	74, 59,	82, 65,	79)
+df <- data.frame(type1=t1, type2=t2)
+df
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

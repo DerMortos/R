@@ -1,0 +1,115 @@
+---
+title: "Homework Week 12"
+author:
+- UTRGV School of Mathematical and Statistical Sciences
+- STAT 4332 Experimental Design
+- Norb Lara
+output:  html_notebook
+---
+
+---
+
+>**Objective:** Factorial Designs: Practical problems
+
+---
+
+
+For problems include in your conclusions the necessary graphs and comparisons, if necessary.
+
+#### Problem 1:
+The yield of a chemical process is being studied.  The two most important variables are thought to be the pressure and the temperature.  Three levels of each factor are selected, and a factorial experiment with two replicates is performed.  The yield data follow:
+
+![](Homework12-problem1.png)\
+  
+Analyze the data and draw conclusions.  Use $\alpha = 0.05.$ \
+-   **Based on our P-value results for factors A and B we can reject the null and state that the effects of temperature and pressure are significant.** \
+-   **There is no interaction between temperature and pressure.**\
+\
+![Problem1](Hw12-1a.png)\
+\
+Prepare appropriate residual plots and comment on the model's adequacy. \
+-     **The data follows closely to the normally distributed line. Therefore normality assumption is correct.**\
+-     **Residuals have increased variability for lower valued fitted values.** \
+\
+![Problem1](Hw12-1b.png)\
+\
+Under what conditions would you operate this process to obtain the highest yield (use interaction plots)?\
+-     **Yields increase overall when temperature is at 170 degrees (left interaction plot) and pressure is at 215 Pa (right interaction plot).**\
+\
+![Problem1](Hw12-1c.png)\
+\
+
+---
+---
+#### Problem 2:
+An engineer suspects that the surface finish of a metal part is influenced by the feed rate and the depth of cut.  She selects three feed rates and four depths of cut.  She then conducts a factorial experiment and obtains the following data:
+
+![](Homework12-problem2.png)\
+
+Analyze the data and draw conclusions.  Use $\alpha = 0.05.$\
+-     **The small P-value for factor A, B and their interaction indicates that the main effect for feed rate, depth of cut and the interaction between them is significant.** \
+\
+![Problem 2](Hw12-2a.png) \
+Prepare appropriate residual plots and comment on the model's adequacy.\
+-     **The data follows closely to the normally distributed line. Therefore normality assumption is correct.**\
+-     **Residuals do not have increased variability which shows assumption of equal variance is correct.** \
+\
+![Problem 2](Hw12-2b.png)\
+\
+
+---
+---
+#### Problem 3:
+An article in Industrial Quality Control (1956, pp. 5-8) describes an experiment to investigate the effect of the type of glass and the type of phosphor on the brightness of a television tube.  The response variable is the current necessary (in microamps) to obtain a specified brightness level.  The data are as follows:
+
+![](Homework12-problem3.png) \
+
+Is there any indication that either factor influences brightness? Use $\alpha = 0.05.$ \
+-     **The small P-value for factor A and B indicate that both glass and phosphor type have a significant main effect.**\
+\
+![Problem 3](Hw12-3a.png)\
+\
+Do the two factors interact? Use $\alpha = 0.05.$ \
+-     **The overall parallel lines in the plots for glass and phosphor indicate no interaction**\
+\
+![Problem 3](Hw12-3c.png)\
+\
+Prepare appropriate residual plots and comment on the model's adequacy. \
+-     **The data follows closely to the normally distributed line. Therefore normality assumption is correct.**\
+-     **Residuals do not have increased variability which shows assumption of equal variance is correct.** \
+![Problem 3](Hw12-3b.png)\
+\
+Use Tukey’s test to determine which levels of the phosphor factor are significantly different.\
+-     **There is no difference between the three groups**\
+\
+![Problem 3](Hw12-3d.png)\
+\
+
+---
+---
+#### Problem 4:
+The percentage of hardwood concentration in raw pulp, the vat pressure, and the cooking time of the pulp are being investigated for their effects on the strength of paper.  Three levels of hardwood concentration, three levels of pressure, and two cooking times are selected.  A factorial experiment with two replicates is conducted, and the following data are obtained:
+
+![](Homework12-problem4.png)\
+
+Analyze the data and draw conclusions (include all interactions). Use $\alpha = 0.05.$\
+-     **There is no main effect of factors A (Concentration), B (Pressure) or C (Time).**\
+-     **There is no interaction between AC or BC. However there is interaction between AB (Concentration/Pressure).** \
+\
+![Problem 4](Hw12-4.png) \
+\
+Prepare appropriate residual plots and comment on the model's adequacy.\
+-     **The data follows closely to the normally distributed line. Therefore normality assumption is correct.**\
+-     **Residuals do not have increased variability which shows assumption of equal variance is correct.** \
+![Problem 4](Hw12-4b.png) \
+\
+Under what set of conditions would you run the process (use interaction plots)? \
+-     **For the greatest paper strength the concentration of hardwood should be set to 2, pressure at 650 Pa and a cooked for 4 hours. **\
+\
+![Problem 4](Hw12-4c.png) \
+
+
+
+
+
+

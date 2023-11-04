@@ -1,0 +1,129 @@
+---
+title: "Homework Week 8"
+author:
+- UTRGV School of Mathematical and Statistical Sciences.
+- STAT 4332 Experimental Design
+- Norb Lara
+output:  html_notebook
+---
+
+---
+
+>**Objective:** One-Way ANOVA: Practical problems
+
+---
+
+
+### Problems:
+
+* An experimenter has conducted a single-factor experiment with four levels of the factor, and each factor level has been replicated six times.  The computed value of the F-statistic is $F_0 = 3.26.$  Find the P-value.
+
+\begin{aligned}
+factor levels:    k &= 4 \\
+replicates:       n &= 6*k = 6(4) = 24 \\
+degrees of freedom:    df1 &= k-1 = 4-1 = 3 \\
+df2 &= n-k = 24-4 = 20 \\
+\\
+p-value &= 0.0430\\
+\end{aligned}
+
+```{r, echo=TRUE}
+pf(3.26,3,20,lower.tail = FALSE)
+```
+---
+---
+* An experiment has conducted a single-factor completely randomized design with three levels of factors and five replicates. The computed value of the F-statistic is $F_0=2.91.$ Find the P-value.
+
+\begin{aligned}
+factor levels:    k &= 3 \\
+replicates:       n &= 5*k = 5(3) = 15 \\
+degrees of freedom:    df1 &= k-1 = 3-1 = 2 \\
+df2 &= n-k = 15-3 = 12 \\
+\\
+p-value &= 0.09325\\
+\end{aligned}
+```{r}
+pf(2.91,2,12,lower.tail = FALSE)
+```
+---
+---
+* The tensile strength of Portland cement is being studied.  Four different mixing techniques can be used economically.  A completely randomized experiment was conducted and the following data were
+collected that represents Tensile Strength (lb/in$^2$).
+
+    Mixing Technique |     |      |      |      |
+    ---              | --- | ---  | ---  | ---  | 
+    1                |3129 | 3000 | 2865 | 2890 |
+    2                |3200 | 3300 | 2975 | 3150 |
+    3                |2800 | 2900 | 2985 | 3050 |   
+    4                |2600 | 2700 | 2600 | 2765 |    
+    * **Make a scatter or a box-plot that help you visualize distribution's attributes such as variance 
+    and mean.**
+```{r}
+# Data for tensile strengths
+tensile_strength <- data.frame(
+  Technique = factor(rep(1:4, each = 4)),
+  Strength = c(3129, 3000, 2865, 2890,
+               3200, 3300, 2975, 3150,
+               2800, 2900, 2985, 3050,
+               2600, 2700, 2600, 2765)
+)
+
+# Create a boxplot
+boxplot(Strength ~ Technique, data = tensile_strength,
+        xlab = "Mixing Technique",
+        ylab = "Tensile Strength (lb/in^2)",
+        main = "Boxplot of Tensile Strength by Mixing Technique",
+        col = rainbow(4)
+)
+```
+
+    * **Test the hypothesis that mixing techniques affect the strength of the cement.  Use $\alpha= 
+    0.05.$**\
+    As shown below, since our P-value is very small. We reject our null hypothesis\
+
+    * **Use the Fisher LSD method with $\alpha= 0.05$ to make comparisons between pairs of means.** \
+    The groups are significantly different except for group 1 and 3 which crosses the zero
+
+    * **Construct a normal probability plot of the residuals.  What conclusion would you draw about the
+    validity of the normality assumption?** \
+    The data follows closely to the normally distributed line. Therefore or normality assumption is correct.\
+
+    * **Plot the residuals versus the predicted tensile strength.  Comment on the plot.** \
+    Residuals do not have increased variability which shows assumption of equal variance is correct \
+
+    * **Use Tukey’s test with $\alpha = 0.05.$  Do you get the same conclusions from Tukey’s test that 
+    you did with the Fisher LSD method?** \
+    No \
+
+    
+  ---
+  ---
+    
+* **Reconsider previous experiment.  Find a 95 percent confidence interval on the mean tensile strength of the Portland cement produced by each of the four mixing techniques.  Also find a 95 percent confidence interval on the difference in means for techniques 1 and 3.  Does this aid in interpreting the results of the experiment?** \
+
+
+---
+---
+* A pharmaceutical manufacturer wants to investigate the bioactivity of a new drug.  A completely randomized single-factor experiment was conducted with three dosage levels, and the following results were obtained.
+
+  Dosage  |     |      |      |      |
+    ---   | --- | ---  | ---  | ---  | 
+    20g   |24 | 28 | 37 | 30 |
+    30g   |37 | 44 | 31 | 35 |
+    40g   |42 | 47 | 52 | 38 |   
+    * **Is there evidence to indicate that dosage level affects bioactivity?  Use $\alpha = 0.05.$** \
+    With a small P-value, there is evidence to indicate that bioactivity is different. We reject the null\
+
+    * **If it is appropriate to do so, make comparisons between the pairs of means.  What conclusions can
+    you draw?** \
+    the 40g and 20g have significantly different means\
+
+    * **Analyze the residuals from this experiment and comment on the model adequacy.** \
+    Residuals do not have increased variability which shows assumption of equal variance is correct \
+
+---
+---
+* Problem to be solved with R: Consider the dataset  ToothGrowth `data(ToothGrowth)` wheres the response is the length of odontoblasts (cells responsible for tooth growth) in 60 guinea pigs. Each animal received one of three dose levels of vitamin C (0.5, 1, and 2 mg/day). Perform ANOVA analysis to show whether the dose of vitamin C has an effect in tooth grow. Support your analysis with graphics and perform a means comparison analysis using the `TukeyHSD` function (read documentation for such function). Hint: you may need need to use `as.factor(dose)` for both `aov` function and Tukeys.    
+    
+    
+

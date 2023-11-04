@@ -1,0 +1,156 @@
+---
+title: "Homework Week 10"
+author:
+- UTRGV School of Mathematical and Statistical Sciences
+- STAT 4332 Experimental Design
+- Norb Lara
+output:  html_notebook
+---
+
+---
+
+>**Objective:** Randomized Complete Block Designs (RCBD): Practical problems
+
+---
+
+
+
+For problems include in your conclusions the necessary graphs and comparisons, if necessary.
+
+### Problem 1:
+* Suppose that a single factor experiment with four levels of the factor has been conducted. There are six replicates and the experiment has been conducted in blocks. The error sum of square is 500 and the block sum of the square is 250. If the experiment had been conducted as a completely randomized design what would be the estimate of the error variance $\sigma^2$?
+![Problem 1](Hw10-1.png) \
+
+---
+---
+### Problem 2
+* Suppose that a single factor experiment with five levels of the factor has been conducted. There are three replicated and the experiment has been conducted as a complete randomized design. If the experiment had been conducted in blocks the pure error degrees of freedom would be reduced by?\
+![Problem 2](Hw10-2.png) \
+
+---
+---
+### Problem 3
+* A chemist wishes to test the effect of four chemical agents on the strength of 
+a particular type of cloth.  Because there might be variability from one bolt to 
+another, the chemist decides to use a randomized block design, with the bolts of 
+cloth considered as blocks.  She selects five bolts and applies all four 
+chemicals in random order to each bolt.  The resulting tensile strengths follow. 
+Analyze the data from this experiment (use $\alpha = 0.05$) and draw appropriate 
+conclusions.
+
+  Chemical         |Bolt1|Bolt2 |Bolt3 |Bolt4 | Bolt5|
+  ---              | --- | ---  | ---  | ---  | ---  |
+  1                |73   | 68   | 74   | 71   | 67   |
+  2                |73   | 67   | 75   | 72   | 70   |
+  3                |75   | 68   | 78   | 73   | 68   | 
+  4                |73   | 71   | 75   | 75   | 69   |
+**Treatment**\
+$H_0$: All treatments are the same\
+$H_a$: At least one treatment is different\
+**P-value for the chemical is 0.121 which is greater than 0.05 We do not reject the null as there is no significant difference between chemicals**\
+**Block:** \
+$H_0$: All blocks are the same\
+$H_a$: At least one block is different\
+**P-value for the bolt bacth 0.000 < 0.05 We reject the null and conclude that there is at least one different block.**\
+![Problem 3](Hw10-3a.png) \
+
+---
+---
+### Problem 4
+* Three different washing solutions are being compared to study their effectiveness in retarding bacteria growth in five-gallon milk containers.  The analysis is done in a laboratory, and only three trials can be run on any day.  Because days could represent a potential source of variability, the experimenter decides to use a randomized block design.  Observations are taken for four days, and the data are shown here. Analyze the data from this experiment (use $\alpha = 0.05$) and draw conclusions.  
+
+  Solution         |Day1 |Day2  |Day3  |Day4  |
+  ---              | --- | ---  | ---  | ---  |
+  1                |13   | 22   | 18   | 39   |
+  2                |16   | 24   | 17   | 44   |
+  3                |05   | 04   | 01   | 22   |
+  **Treatment**\
+$H_0$: All treatments are the same\
+$H_a$: At least one treatment is different\
+**P-value for the chemical is much smaller than 0.05 We  reject the null as there is a significant difference in efficiency**\
+**Additionaly, a different method can be used to verify. Using Fvalue and critical value.**\
+$F_{4,20,0.05}$ = 2.87 \
+**Since 40.72 > 2.87 we reject the null.**\
+**Block:** \
+$H_0$: All blocks are the same\
+$H_a$: At least one block is different\
+**P-value for the days blocking 0.000 < 0.05 We reject the null and conclude that there is at least one different block.**\
+![Problem 4](Hw10-4a.png)
+![Problem 4](Hw10-4b.png)
+![Problem 4](Hw10-4c.png)
+
+---
+---
+### Problem 5:
+* Repeat previous exercise, this time not considering days as block but just as replicates. That is, as a Completely Randomized experiment. (Assuming the observations were taken in random order)\
+**Treatment**\
+$H_0$: All treatments are the same\
+$H_a$: At least one treatment is different\
+**P-value for the chemical 0.055 is greater than 0.05 We do not reject the null. There is no significant difference in efficiency**\
+![Problem 5](Hw10-5a.png)
+![Problem 5](Hw10-5b.png)
+![Problem 5](Hw10-5c.png)
+![Problem 5](Hw10-5d.png) \
+
+---
+---
+### Problem 6
+* The effect of three different lubricating oils on fuel economy in diesel 
+truck engines is being studied.  Fuel economy is measured using brake-specific 
+fuel consumption after the engine has been running for 15 minutes.  Five 
+different truck engines are available for the study, and the experimenters 
+conduct the following randomized complete block design.
+
+  Oil              |Truck1  |Truck2  |Truck3  |Truck4  | Truck5|
+  ---              | ---    | ---    | ---    | ---    | ---   |
+  1                |0.500   | 0.634  | 0.487  | 0.329  | 0.512 |
+  2                |0.535   | 0.675  | 0.520  | 0.435  | 0.540 |
+  3                |0.513   | 0.595  | 0.488  | 0.400  | 0.510 |  
+  
+  \
+  * Analyze the data from this experiment. \
+ -**Factor A (oil) is significant. The $H_0$ is rejected and we can conclude that there is a difference in fuel economy. **\
+ -**Factor B (truck) is not significant.** \
+ \
+   ![Problem 6](Hw10-6.png) \
+   
+  * Use the Fisher LSD method to make comparisons among the three
+  lubricating oils to determine specifically which oils differ in 
+  break-specific fuel consumption \
+  -**Oil 2(Group A) shows a difference to that of  oil 1 and 3 (both in group B).** \
+  \
+  ![Problem6](Hw10-6b.png) \
+  \
+  * Analyze the residuals from this experiment\
+-**The data follows closely to the normally distributed line. Therefore normality assumption is correct.**\
+-**Residuals do not have increased variability which shows assumption of equal variance is correct.** \
+  ![Problem 6](Hw10-6c.png) \
+  
+---
+---
+### Problem 7
+* The effect of five different ingredients (A, B, C, D, E) on reaction time of a chemical
+process is being studied.  Each batch of new material is only large enough to permit five
+runs to be made.  Furthermore, each run requires approximately 1 1/2 hours, so only five
+runs can be made in one day.  The experimenter decides to run the experiment as a Latin
+square so that day and batch effects can be systematically controlled.  She obtains the
+data that follow.  Analyze the data from this experiment (use $\alpha = 0.05$) and draw
+conclusions.  
+
+  Batch            |Day1  |Day2  |Day3  |Day4  | Day5|
+  ---              | ---    | ---    | ---    | ---    | ---   |
+  1                |A=8   | B=7  | D=1  | C=7  | E=3 |
+  2                |C=11   | E=2  | A=7  | D=3  | B=8 |
+  3                |B=4   | A=9  | C=10  | E=1  | D=5 |
+  4                |D=6   | C=8  | E=6  | B=6  | A=10 |
+  5                |E=4   | D=2  | B=3  | A=8  | C=8 |
+  
+\
+- **Main effect of treatment factor is significant.** \
+- **Batch and Day return large P-values, reject the null and we find that their effects are not significant.**\
+\
+![Problem 7](Hw10-7a.png) \
+-     **The data follows closely to the normally distributed line. Therefore normality assumption is correct.**\
+-     **Residuals do not have increased variability which shows assumption of equal variance is correct.** \
+\
+![Problem 7](Hw10-7b.png)

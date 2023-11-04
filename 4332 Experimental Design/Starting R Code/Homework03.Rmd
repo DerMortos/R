@@ -1,0 +1,185 @@
+---
+title: "Homework Week 3"
+author:
+- UTRGV School of Mathematical and Statistical Sciences
+- STAT 4332 Experimental Design
+- Norb Lara
+output:  html_notebook
+---
+
+---
+
+>**Objective:** Random Variables, Central Limit Theorem, Inferential Statistics on one and two samples
+
+---
+
+
+- Let $X$ be a continuous random variable with $V(X)=\sigma^2$ and $E(X)=\mu.$ Let $c\ne0$ be a constant. Show that:
+  + $V(cX)=c^2\sigma^2$
+  ![Problem 1, first bullet](Hw3-1a.png)
+  ---
+  ---
+  + $\sigma^2+\mu^2 = E(X^2)$
+  ![Problem 1, second bullet](Hw3-1b.png)
+  ---
+  ---
+\newline  
+- Let $X$ and $Y$ be continuous random variables with $V(X)=V(Y)=\sigma^2$ and $E(X)=\mu_1$ and
+$E(Y)=\mu_2.$ If $\{X_i\}_1^n$ and $\{Y_i\}_1^m$ are random samples
+  + Show that the expected value of the statistic 
+  $$S_1= \frac{1}{n-1} \sum_{i=1}^n (X_i-\mu_1)^2$$
+  is $\sigma^2.$ (That is, $S_1$ is an unbiased estimator of population variance)
+  ![Problem 2, first bullet](Hw3-2a.png)
+  ---
+  ---
+  + Show that the pooled variance $S_p$ is also an unbiased estimator of $\sigma^2.$
+![Problem 2, second bullet](Hw3-2b.png)
+---
+---
+\newline
+- **Central Limit Theorem:** 
+  + Use the `rexp` function to sample $n=100$ values from an exponential distribution with $\mu=1.$ Plot the normal probability plot and the histogram.
+  + Repeat procedure above 1000 times. For each run, compute the mean of the resulting 100 values and store it in a vector, say, `means[k]<- current_mean.` 
+  + Once all 1000 runs are finished, plot the normal probability plot and the histogram of vector `means`.
+
+```{r}
+# data_100 = rexp(100, rate = 1)
+# qqnorm(data_100)
+# hist(data_100)
+# data_1000 = rexp(1000, rate = 1)
+# qqnorm(data_1000)
+# hist(data_1000)
+data100 <- rexp(10000, rate = 1)
+matrixData <- matrix(data100, nrow = 100, ncol = 100)
+means.exp <- apply(matrixData, 1, mean)
+mean(means.exp)
+hist(means.exp)
+
+data1000 <- rexp(100000, rate = 1)
+matrixData2 <- matrix(data1000, nrow = 1000, ncol = 100)
+means.exp <- apply(matrixData2, 1, mean)
+mean(means.exp)
+hist(means.exp)
+```
+
+\newline
+- A computer program has produced the following output for the hypothesis testing problem:
+*Difference in sample means:  2.35 \
+Degrees of freedom:  18 \
+Standard error of the difference in the sample means:  ? \
+Test statistic:  to = 2.01 \
+P-Value = 0.0298*
+  + What is the missing value for the standard error?
+   
+  \begin{aligned}
+  
+  T & = \frac{(\bar X - \bar Y) - (\mu_x - \mu_y)}{\sqrt{\frac{S_x^2}{n} + \frac{S_y^2}{m}}} \\
+  \\
+  2.01 & = \frac{(\bar X - \bar Y) - 0}{Std. Error} \\
+  \\
+  2.01 & = \frac{\Delta Sample Means}{Std. Error} \\
+  \\
+  Std. Error & = \frac{2.35}{2.01} = 1.17
+  \end{aligned}
+  + Is this a two-sided or one-sided test? \
+  **From table A.4 The P-value for t statistic 2.01 at 18 degrees of freedom is just over 0.025. Therefore this is a one-sided test**
+  \
+  + If $\alpha=0.05,$ what are your conclusions?\
+  **Because 0.0298 $\le \alpha$ this test is statistically significant. Therefore we reject the null hypothesis** \
+  + Find a 90% two-sided CI on the difference in the means.\
+  **90% Confidence interval is (0.32, 4.38)**
+
+  \begin{aligned}
+  
+  (\bar X_1 - \bar X_2) - t_{\alpha/2,18} * \frac{\sigma}{\sqrt{n}} & \le \mu_1 - \mu_2 \le (\bar X_1 - \bar X_2) + t_{\alpha/2,18} * \frac{\sigma}{\sqrt{n}} \\
+  2.35 - 1.734(1.17) & \le \mu_1 - \mu_2 \le 2.35 + 1.734(1.17) \\
+  \\
+  0.32 & \le \mu_1 - \mu_2 \le 4.38 \\
+  \\
+  & * t_{\alpha/2,18} \text{from Table A.4}
+  \end{aligned}
+
+  
+\newline
+* A computer program has produced the following output for the hypothesis testing problem:
+*Difference in sample means:  11.5 \
+Degrees of freedom:  24 \
+Standard error of the difference in the sample means:  ? \
+Test statistic:  to = -1.88 \
+P-Value = 0.0723*
+  + What is the missing value for the standard error?
+  
+  \begin{aligned}
+  
+  T & = \frac{(\bar X - \bar Y) - (\mu_x - \mu_y)}{\sqrt{\frac{S_x^2}{n} + \frac{S_y^2}{m}}} \\
+  \\
+  -1.88 & = \frac{(\bar X - \bar Y) - 0}{Std. Error} \\
+  \\
+  -1.88 & = \frac{\Delta Sample Means}{Std. Error} \\
+  \\
+  Std. Error & = \frac{11.5}{-1.88} = -6.1
+  \end{aligned}
+  + Is this a two-sided or one-sided test? \
+  **Using pt() to find the test statistic we find the lower tail p-value to be 0.036** 
+  ```{r, asis=TRUE}
+  pt(-1.88, 24, lower.tail = TRUE)
+  ```
+  **Since 2(0.036) = 0.072, this is a two-sided test** \
+  \
+  + If $\alpha=0.05,$ what are your conclusions?\
+  **Because 0.072 $\ge \alpha$ this test is not statistically significant. Therefore we do not reject the null hypothesis** \
+  \
+  + Find a 90% two-sided CI on the difference in the means.\
+  **90% Confidence interval is (1.1, 21.9)**
+
+  \begin{aligned}
+  
+  (\bar X_1 - \bar X_2) - t_{\alpha/2,18} * \frac{\sigma}{\sqrt{n}} & \le \mu_1 - \mu_2 \le (\bar X_1 - \bar X_2) + t_{\alpha/2,18} * \frac{\sigma}{\sqrt{n}} \\
+  11.5 - (-1.711(-6.1)) & \le \mu_1 - \mu_2 \le 11.5 + (-1.711(-6.1)) \\
+  \\
+  1.1 & \le \mu_1 - \mu_2 \le 21.9 \\
+  \\
+  & * t_{\alpha/2,18} \text{from Table A.4}
+  \end{aligned}
+  
+  
+**NOTE:** For points 1 and 2, you can develop your calculations by hand and include a picture in
+the R markdown by using `![Caption for the picture.](/path/to/image.png).` Alternatively, you can use 
+$\LaTeX$ by following similar template as below:
+
+\begin{aligned}
+
+(a+b)^2 & = (a+b)(a+b) \\
+        & = a(a+b) + b(a+b) \\
+        & = (a^2+ab) + (ab+b^2) \\
+        & = a^2 + 2ab + b^2
+\end{aligned}
+
+where the `&` aligns vertically and `\\` means next line.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

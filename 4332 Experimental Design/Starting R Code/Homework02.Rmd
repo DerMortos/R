@@ -1,0 +1,89 @@
+---
+title: "Homework Week 2"
+author:
+- UTRGV School of Mathematical and Statistical Sciences
+- STAT 4332 Experimental Design
+- (**Norb Lara**)
+- 0173147
+output:  html_notebook
+---
+
+---
+
+>**Objective:** Use the R notebook to present homework reports in a standard and organized manner.
+
+---
+
+
+- Use the command `install.packages("reshape2")` to install the package `reshape2` which contains the dataset "tips".
+
+- Load the dataset "tips". First, use the command `library('reshape2')` to load the package and then use the command `data(tips)` to load the dataset in your environment (work space)
+
+```{r, echo=FALSE}
+#install.packages("reshape2") # uncomment the first time
+library('reshape2')
+data(tips)
+```
+
+- Use the functions `head` and `summary` to explore general aspects of your data.
+```{r}
+head(tips)
+summary(tips)
+```
+- What is the the mean of the `total_bill` and `tip`?
+```{r}
+billMean <- round(mean(tips$total_bill), 2)
+tipMean <- round(mean(tips$tip), 2)
+
+print(paste0("The mean of the total_bill column is: $", billMean))
+print(paste0("The mean of the tip column is: $",tipMean))
+```
+- What is the the mean of the `tip` aggregated by `sex`. Does it seem that woman tip more than men?
+```{r}
+tipMean_bySex <- aggregate(tips$tip, list(tips$sex), mean)
+tipMean_F <- round(tipMean_bySex[1,2], 2)
+tipMean_M <- round(tipMean_bySex[2,2], 2)
+cat("The mean of tips given by women is: $", tipMean_F, ". While the mean for men is: $", tipMean_M)
+```
+- What is the the mean of the `tip` aggregated by `smokes`. Does it seem that smokers tip more than non-smokers?
+```{r}
+tipMean_Smokers <- aggregate(tips$tip, list(tips$smoker), mean)
+tipMean_Smoke <- round(tipMean_Smokers[2,2],2)
+tipMean_NonSmoke <- round(tipMean_Smokers[1,2,],2)
+cat("The mean of tips given by smokers is: $", tipMean_Smoke, ". While the mean for non-smokers is: $", tipMean_NonSmoke)
+```
+
+- what is the proportion of smokers in this dataset? Hint: This is observed on `summary` but you can use the function `table` for categorical variables
+```{r}
+print("The proportion of smokers vs non-smokers is:") 
+prop.table(summary(tips$smoker))
+```
+
+- Display Box plot of `total_bill` aggregated by `day`
+```{r}
+boxplot(total_bill ~ day, data = tips, ylab = "Bill Total Amount")
+```
+
+- Display Box plot of `total_bill` aggregated by `time`
+```{r}
+boxplot(total_bill ~ time, data = tips, ylab = "Bill Total Amount", xlab = "Meal Time")
+```
+
+- Use the `qqnorm` function to determine if the variable `tip` is normally distributed
+```{r}
+qqnorm(tips$tip)
+print("The tip variable is not normally distributed")
+```
+- Support your conclusion in the point above by displaying a histogram of variable `tip`
+```{r}
+hist(tips$tip, main = "Tip Distribution", xlab = "Tip Amount")
+print("The majority of tips are clustered in the $2 - $3 range. The histogram is 'heavier' on the left.")
+```
+
+
+  
+
+
+
+
+

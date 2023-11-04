@@ -1,0 +1,75 @@
+---
+title: "Homework Week 1"
+author:
+- UTRGV School of Mathematical and Statistical Sciences
+- STAT 4332 Experimental Design
+- Norb Lara 
+- SID 0173147
+output:  html_notebook
+---
+
+---
+>**Objective:** Use the R notebook to present homework reports in a standard and organized manner.
+
+
+* Consider the following paired data $(x,y)$:
+
+| --- | --- | --- | --- | --- | --- | --- | ---  | ---  | ---  | --- |  <br>
+$x$ | 1   | 2   | 3   | 4   | 5   | 6   | 7    | 8    | 9    | 10       <br>
+$y$ | 2.20| 4.06| 4.33| 5.95| 6.02| 8.65| 10.70| 11.56| 10.71| 12.07    <br>
+  * Use the function `lm` to conduct a linear regression and display the results with function     `summary`. <br>
+  * Compute the *total sum of squares* SST and the *error sum of squares* SSE and compute the **coefficient of determination $R^2$** as $1-\frac{SSE}{SST}.$ There are many ways to do this. For example you can use the function `residuals` or you can store your model `mod <- lm()` and use the access `mod$fitted.values` and `mod$residuals`. 
+  
+
+
+Using the Simple Linear Regression Model:
+$$ Y = \beta_0 + \beta_1X + \epsilon$$
+---
+<!-- {r} - indicates R code
+      ` is an "accent grave" (ave as in have) also called back tick
+      ` is under the tilde-->
+```{r}
+x <- c(1:10)
+y <- c(2.20, 4.06, 4.33, 5.95, 6.02, 8.65, 10.70, 11.56, 10.71, 12.07)
+z <- x + y
+print(z)
+```
+
+
+
+Our Linear Model Summary is
+```{r}
+Linear_model.lm <- lm(formula = y ~ x)
+summary(Linear_model.lm)
+```
+
+
+
+The plot of the Regression Line is
+```{r}
+plot(x = x, y = y, xlab = "x values", ylab = "y values", main = "Homework 1")
+```
+
+
+
+ Computing the coefficient of determination:
+ $$ R^2 = \frac{SSR}{SST} = \frac{\sum_{i=1}^{n}(\hat y_i - \bar y)^2}{\sum_{y_i - \bar y)^2}} = 1 - \frac{SSE}{SST}$$
+ 
+ 
+```{r}
+# summary(Linear_model.lm)$r.squared
+# SSE = sum(Linear_model.lm$residuals**2)
+
+SST = sum((y - mean(y))**2)
+SSR = sum((Linear_model.lm$fitted.values - mean(y))**2)
+SSE = sum((Linear_model.lm$fitted.values - y)**2)
+
+(SST - SSE) / SST
+
+SSR / SST
+
+1 - SSE / SST
+```
+ 
+ 
+ 
